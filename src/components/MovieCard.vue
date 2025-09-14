@@ -3,7 +3,7 @@
     <div class="movie-poster">
       <img 
         :src="posterUrl" 
-        :alt="movie.title || movie.name"
+        :alt="'title' in movie ? movie.title : movie.name"
         @error="handleImageError"
       />
       <div class="movie-overlay">
@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="movie-info">
-      <h3 class="movie-title">{{ movie.title || movie.name }}</h3>
+      <h3 class="movie-title">{{ 'title' in movie ? movie.title : movie.name }}</h3>
       <p class="movie-overview">{{ truncatedOverview }}</p>
     </div>
   </div>
@@ -37,9 +37,9 @@ const props = withDefaults(defineProps<Props>(), {
   size: 'medium'
 })
 
-const emit = defineEmits<{
-  click: [movie: Movie | TVShow]
-}>()
+// const emit = defineEmits<{
+//   click: [movie: Movie | TVShow]
+// }>()
 
 const posterUrl = computed(() => {
   const size = props.size === 'small' ? 'w185' : props.size === 'large' ? 'w500' : 'w342'
@@ -47,7 +47,7 @@ const posterUrl = computed(() => {
 })
 
 const releaseYear = computed(() => {
-  const date = props.movie.release_date || (props.movie as TVShow).first_air_date
+  const date = 'release_date' in props.movie ? props.movie.release_date : (props.movie as TVShow).first_air_date
   return date ? new Date(date).getFullYear() : 'N/A'
 })
 

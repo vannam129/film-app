@@ -78,12 +78,12 @@ const props = withDefaults(defineProps<Props>(), {
   cardSize: 'medium'
 })
 
-const emit = defineEmits<{
-  viewAll: []
-  retry: []
-  loadMore: []
-  movieClick: [movie: Movie | TVShow]
-}>()
+// const emit = defineEmits<{
+//   viewAll: []
+//   retry: []
+//   loadMore: []
+//   movieClick: [movie: Movie | TVShow]
+// }>()
 
 const gridClass = computed(() => {
   const baseClass = 'movies-grid'

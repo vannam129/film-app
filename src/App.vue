@@ -1,14 +1,6 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
 import Navigation from './components/Navigation.vue'
-import { useMoviesStore } from './stores/movies'
-
-const moviesStore = useMoviesStore()
-
-onMounted(() => {
-  // Initialize store if needed
-})
 </script>
 
 <template>

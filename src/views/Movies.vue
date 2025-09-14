@@ -151,8 +151,8 @@ const handleSearch = (query: string, type: string) => {
   }
 }
 
-const handleSuggestionSelect = (item: Movie) => {
-  goToMovieDetails(item)
+const handleSuggestionSelect = (item: Movie | TVShow) => {
+  goToMovieDetails(item as Movie)
 }
 
 const goToMovieDetails = (movie: Movie) => {

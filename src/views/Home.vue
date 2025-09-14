@@ -158,8 +158,12 @@ const handleSuggestionSelect = (item: Movie | TVShow) => {
   }
 }
 
-const goToMovieDetails = (movie: Movie) => {
-  router.push({ name: 'MovieDetails', params: { id: movie.id } })
+const goToMovieDetails = (movie: Movie | TVShow) => {
+  if ('title' in movie) {
+    router.push({ name: 'MovieDetails', params: { id: movie.id } })
+  } else {
+    router.push({ name: 'TVShowDetails', params: { id: movie.id } })
+  }
 }
 
 const goToTVShowDetails = (tvShow: TVShow) => {

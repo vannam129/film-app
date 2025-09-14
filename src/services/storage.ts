@@ -130,7 +130,7 @@ class StorageService {
   // Share functionality
   async shareItem(item: Movie | TVShow): Promise<boolean> {
     try {
-      const title = item.title || (item as TVShow).name
+      const title = 'title' in item ? item.title : (item as TVShow).name
       const url = `${window.location.origin}/movie/${item.id}`
       const text = `Xem "${title}" trên FilmApp`
       

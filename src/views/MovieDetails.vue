@@ -48,13 +48,13 @@
             </div>
             
             <div class="movie-runtime">
-              {{ movie.runtime ? `${movie.runtime} phút` : 'N/A' }}
+              {{ (movie as Movie).runtime ? `${(movie as Movie).runtime} phút` : 'N/A' }}
             </div>
           </div>
 
           <div class="movie-genres">
             <span 
-              v-for="genre in movie.genres" 
+              v-for="genre in (movie as Movie).genres" 
               :key="genre.id"
               class="genre-tag"
             >
@@ -123,15 +123,15 @@
             </div>
             <div class="info-item">
               <span class="info-label">Trạng thái:</span>
-              <span class="info-value">{{ movie.status || 'N/A' }}</span>
+              <span class="info-value">{{ (movie as Movie).status || 'N/A' }}</span>
             </div>
             <div class="info-item">
               <span class="info-label">Ngân sách:</span>
-              <span class="info-value">{{ formatCurrency(movie.budget) }}</span>
+              <span class="info-value">{{ formatCurrency((movie as Movie).budget) }}</span>
             </div>
             <div class="info-item">
               <span class="info-label">Doanh thu:</span>
-              <span class="info-value">{{ formatCurrency(movie.revenue) }}</span>
+              <span class="info-value">{{ formatCurrency((movie as Movie).revenue) }}</span>
             </div>
           </div>
         </div>
@@ -156,7 +156,6 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-const router = useRouter()
 const { toggleFavorite, toggleSaved, shareItem, isFavorite, isSaved, refreshData } = useFavorites()
 
 const movie = ref<Movie | null>(null)

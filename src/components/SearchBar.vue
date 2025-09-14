@@ -40,11 +40,11 @@
       >
         <img 
           :src="tmdbService.getImageUrl(suggestion.poster_path, 'w92')" 
-          :alt="suggestion.title || suggestion.name"
+          :alt="'title' in suggestion ? suggestion.title : suggestion.name"
           class="suggestion-poster"
         />
         <div class="suggestion-info">
-          <h4 class="suggestion-title">{{ suggestion.title || suggestion.name }}</h4>
+          <h4 class="suggestion-title">{{ 'title' in suggestion ? suggestion.title : suggestion.name }}</h4>
           <p class="suggestion-year">
             {{ getReleaseYear(suggestion) }}
           </p>
@@ -128,7 +128,7 @@ const performSearch = () => {
 const selectSuggestion = (item: Movie | TVShow) => {
   emit('suggestionSelect', item)
   suggestions.value = []
-  searchQuery.value = item.title || (item as TVShow).name
+  searchQuery.value = 'title' in item ? item.title : (item as TVShow).name
 }
 
 const handleTypeChange = () => {
