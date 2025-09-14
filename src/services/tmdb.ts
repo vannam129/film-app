@@ -13,7 +13,7 @@ const tmdbApi = axios.create({
 // Types cho API responses
 export interface Movie {
   id: number
-  title: string
+  title?: string
   overview: string
   poster_path: string | null
   backdrop_path: string | null
@@ -30,7 +30,7 @@ export interface Movie {
 
 export interface TVShow {
   id: number
-  name: string
+  name?: string
   overview: string
   poster_path: string | null
   backdrop_path: string | null
@@ -54,7 +54,7 @@ export interface ApiResponse<T> {
 
 export interface Genre {
   id: number
-  name: string
+  name ?: string
 }
 
 // API functions
