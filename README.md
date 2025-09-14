@@ -25,7 +25,7 @@ A modern movie and TV show discovery app built with Vue 3, TypeScript, and The M
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/film-app.git
+git clone https://github.com/vannam129/film-app
 cd film-app
 ```
 
