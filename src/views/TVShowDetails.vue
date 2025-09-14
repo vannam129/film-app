@@ -48,13 +48,13 @@
             </div>
             
             <div class="tv-show-status">
-              {{ tvShow.status || 'N/A' }}
+              {{ (tvShow as TVShow).status || 'N/A' }}
             </div>
           </div>
 
           <div class="tv-show-genres">
             <span 
-              v-for="genre in tvShow.genres" 
+              v-for="genre in (tvShow as TVShow).genres" 
               :key="genre.id"
               class="genre-tag"
             >
@@ -119,15 +119,15 @@
             </div>
             <div class="info-item">
               <span class="info-label">Ngày phát sóng cuối:</span>
-              <span class="info-value">{{ formatDate(tvShow.last_air_date) }}</span>
+              <span class="info-value">{{ formatDate((tvShow as TVShow).last_air_date) }}</span>
             </div>
             <div class="info-item">
               <span class="info-label">Số mùa:</span>
-              <span class="info-value">{{ tvShow.number_of_seasons || 'N/A' }}</span>
+              <span class="info-value">{{ (tvShow as TVShow).number_of_seasons || 'N/A' }}</span>
             </div>
             <div class="info-item">
               <span class="info-label">Số tập:</span>
-              <span class="info-value">{{ tvShow.number_of_episodes || 'N/A' }}</span>
+              <span class="info-value">{{ (tvShow as TVShow).number_of_episodes || 'N/A' }}</span>
             </div>
             <div class="info-item">
               <span class="info-label">Ngôn ngữ gốc:</span>
@@ -135,7 +135,7 @@
             </div>
             <div class="info-item">
               <span class="info-label">Trạng thái:</span>
-              <span class="info-value">{{ tvShow.status || 'N/A' }}</span>
+              <span class="info-value">{{ (tvShow as TVShow).status || 'N/A' }}</span>
             </div>
             <div class="info-item">
               <span class="info-label">Quốc gia sản xuất:</span>
@@ -168,7 +168,6 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-const router = useRouter()
 const { toggleFavorite, toggleSaved, shareItem, isFavorite, isSaved, refreshData } = useFavorites()
 
 const tvShow = ref<TVShow | null>(null)
@@ -206,10 +205,11 @@ const getOriginCountries = () => {
 }
 
 const getNetworks = () => {
-  if (!tvShow.value?.networks || tvShow.value.networks.length === 0) {
+  const tvShowData = tvShow.value as TVShow
+  if (!tvShowData?.networks || tvShowData.networks.length === 0) {
     return 'N/A'
   }
-  return tvShow.value.networks.map(network => network.name).join(', ')
+  return tvShowData.networks.map((network: any) => network.name).join(', ')
 }
 
 const isTVShowFavorite = computed(() => {
