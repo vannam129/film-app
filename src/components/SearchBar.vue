@@ -78,7 +78,7 @@ const emit = defineEmits<{
 const searchQuery = ref('')
 const selectedType = ref('all')
 const suggestions = ref<(Movie | TVShow)[]>([])
-const searchTimeout = ref<NodeJS.Timeout | null>(null)
+const searchTimeout = ref<ReturnType<typeof setTimeout> | null>(null)
 
 const handleSearch = () => {
   if (searchTimeout.value) {

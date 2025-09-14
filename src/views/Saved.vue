@@ -60,7 +60,7 @@
           <div class="item-poster">
             <img 
               :src="tmdbService.getImageUrl(item.poster_path, 'w342')" 
-              :alt="item.title"
+              :alt="item.title || 'N/A'"
               @error="handleImageError"
             />
             <div class="item-overlay">
