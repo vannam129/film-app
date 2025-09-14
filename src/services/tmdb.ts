@@ -13,36 +13,42 @@ const tmdbApi = axios.create({
 // Types cho API responses
 export interface Movie {
   id: number
-  title?: string
+  title?: string        // 👈 để optional
+  name?: string         // 👈 thêm cho an toàn khi lẫn với TVShow
   overview: string
   poster_path: string | null
   backdrop_path: string | null
-  release_date: string
+  release_date?: string
+  first_air_date?: string
   vote_average: number
   vote_count: number
   adult: boolean
   genre_ids: number[]
   original_language: string
-  original_title: string
+  original_title?: string
+  original_name?: string
   popularity: number
-  video: boolean
+  video?: boolean
 }
 
 export interface TVShow {
   id: number
+  title?: string        // 👈 thêm để tránh lỗi khi dùng chung
   name?: string
   overview: string
   poster_path: string | null
   backdrop_path: string | null
-  first_air_date: string
+  release_date?: string
+  first_air_date?: string
   vote_average: number
   vote_count: number
   adult: boolean
   genre_ids: number[]
   original_language: string
-  original_name: string
+  original_title?: string
+  original_name?: string
   popularity: number
-  origin_country: string[]
+  origin_country?: string[]
 }
 
 export interface ApiResponse<T> {
