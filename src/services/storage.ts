@@ -35,10 +35,10 @@ class StorageService {
         const storedItem: StoredItem = {
           id: item.id,
           type: 'title' in item ? 'movie' : 'tv',
-          title: item.title || (item as TVShow).name,
+          title: 'title' in item ? item.title : (item as TVShow).name,
           poster_path: item.poster_path,
-          release_date: item.release_date,
-          first_air_date: (item as TVShow).first_air_date,
+          release_date: 'release_date' in item ? item.release_date : undefined,
+          first_air_date: 'first_air_date' in item ? (item as TVShow).first_air_date : undefined,
           vote_average: item.vote_average,
           addedAt: new Date().toISOString()
         }
@@ -91,10 +91,10 @@ class StorageService {
         const storedItem: StoredItem = {
           id: item.id,
           type: 'title' in item ? 'movie' : 'tv',
-          title: item.title || (item as TVShow).name,
+          title: 'title' in item ? item.title : (item as TVShow).name,
           poster_path: item.poster_path,
-          release_date: item.release_date,
-          first_air_date: (item as TVShow).first_air_date,
+          release_date: 'release_date' in item ? item.release_date : undefined,
+          first_air_date: 'first_air_date' in item ? (item as TVShow).first_air_date : undefined,
           vote_average: item.vote_average,
           addedAt: new Date().toISOString()
         }

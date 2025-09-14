@@ -138,14 +138,14 @@ const handleTypeChange = () => {
 }
 
 const getReleaseYear = (item: Movie | TVShow) => {
-  const date = item.release_date || (item as TVShow).first_air_date
+  const date = 'release_date' in item ? item.release_date : (item as TVShow).first_air_date
   return date ? new Date(date).getFullYear() : 'N/A'
 }
 
 // Clear suggestions when clicking outside
-const clearSuggestions = () => {
-  suggestions.value = []
-}
+// const clearSuggestions = () => {
+//   suggestions.value = []
+// }
 
 watch(searchQuery, (newValue) => {
   if (!newValue.trim()) {
